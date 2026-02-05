@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculateur Écart d'Âge - Bravia Hôtel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    input {
+      padding: 0.8rem;
+      margin: 1rem 0;
+      width: 100%;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.8rem;
+      width: 100%;
+      font-size: 1rem;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Calculateur d'Écart d'Âge</h2>
+    <input type="date" id="dob1" placeholder="Date de naissance du 1er conjoint">
+    <input type="date" id="dob2" placeholder="Date de naissance du 2nd conjoint">
+    <button onclick="calculerEcart()">Calculer la réduction</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculerEcart() {
+      const d1 = new Date(document.getElementById('dob1').value);
+      const d2 = new Date(document.getElementById('dob2').value);
+      if (!d1 || !d2 || isNaN(d1) || isNaN(d2)) {
+        document.getElementById('result').textContent = 'Veuillez saisir deux dates valides.';
+        return;
+      }
+      const age1 = new Date().getFullYear() - d1.getFullYear();
+      const age2 = new Date().getFullYear() - d2.getFullYear();
+      const ecart = Math.abs(age1 - age2);
+      const reduction = Math.min(ecart, 25);
+      document.getElementById('result').textContent = `Écart : ${ecart} ans → Réduction : ${reduction} %`;
+    }
+  </script>
+</body>
+</html>
