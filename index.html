@@ -17,12 +17,19 @@
     }
     .card {
       background: white;
-      padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 400px;
+      max-width: 420px;
       width: 100%;
       text-align: center;
+      overflow: hidden;
+    }
+    .header img {
+      width: 100%;
+      display: block;
+    }
+    .content {
+      padding: 2rem;
     }
     input {
       padding: 0.8rem;
@@ -34,11 +41,14 @@
       padding: 0.8rem;
       width: 100%;
       font-size: 1rem;
-      background-color: #0066cc;
+      background-color: #7a1f2b; /* rouge vin */
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+    }
+    button:hover {
+      background-color: #641822;
     }
     .result {
       margin-top: 1.5rem;
@@ -49,18 +59,23 @@
 </head>
 <body>
   <div class="card">
-    <h2>Calculateur d'Écart d'Âge</h2>
-    <input type="date" id="dob1" placeholder="Date de naissance du 1er conjoint">
-    <input type="date" id="dob2" placeholder="Date de naissance du 2nd conjoint">
-    <button onclick="calculerEcart()">Calculer la réduction</button>
-    <div class="result" id="result"></div>
+    <div class="header">
+      <img src="PHOTO-2026-02-06-09-35-21.jpg" alt="Offre spéciale Azalaï Hôtel">
+    </div>
+    <div class="content">
+      <h2>Calculateur d'Écart d'Âge</h2>
+      <input type="date" id="dob1">
+      <input type="date" id="dob2">
+      <button onclick="calculerEcart()">Calculer la réduction</button>
+      <div class="result" id="result"></div>
+    </div>
   </div>
 
   <script>
     function calculerEcart() {
       const d1 = new Date(document.getElementById('dob1').value);
       const d2 = new Date(document.getElementById('dob2').value);
-      if (!d1 || !d2 || isNaN(d1) || isNaN(d2)) {
+      if (isNaN(d1) || isNaN(d2)) {
         document.getElementById('result').textContent = 'Veuillez saisir deux dates valides.';
         return;
       }
